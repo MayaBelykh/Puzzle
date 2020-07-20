@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    fun setAssets() {
+//    fun setAssets() {
 //        findViewById<TableLayout>(R.id.tableLayout).apply {
 //            val list = mutableListOf<Drawable>()
 //            for (i in 1..7) list.add(Drawable.createFromStream(context.assets.open("$j.png"), null))
@@ -47,5 +47,5 @@ class MainActivity : AppCompatActivity() {
 //                }
 //            }
 //        }
-    }
+//    }
 }
