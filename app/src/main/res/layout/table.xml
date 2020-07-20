@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/bottomPanel"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bottom_panel"
+    android:orientation="vertical"
+    android:weightSum="0.9">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+
+        android:layout_height="0dp"
+        android:layout_weight="0.3"
+        android:orientation="horizontal"
+        android:weightSum="0.9">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/bottom_panel_card_margin"
+            android:layout_weight="0.3"
+            app:cardBackgroundColor="@color/card_background"
+            app:cardCornerRadius="@dimen/corner_radius">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/bottom_panel_margin_horizontal"
+                android:scaleType="fitCenter"
+                android:src="@drawable/png_1" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/bottom_panel_card_margin"
+            android:layout_weight="0.3"
+            app:cardBackgroundColor="@color/card_background"
+            app:cardCornerRadius="@dimen/corner_radius">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/bottom_panel_margin_horizontal"
+                android:scaleType="fitCenter"
+                android:src="@drawable/png_2" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/bottom_panel_card_margin"
+            android:layout_weight="0.3"
+            app:cardBackgroundColor="@color/card_background"
+            app:cardCornerRadius="@dimen/corner_radius">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/bottom_panel_margin_horizontal"
+                android:scaleType="fitCenter"
+                android:src="@drawable/png_3" />
+
+        </com.google.android.material.card.MaterialCardView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+
+        android:layout_height="0dp"
+        android:layout_weight="0.3"
+        android:orientation="horizontal"
+        android:weightSum="0.9">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/bottom_panel_card_margin"
+            android:layout_weight="0.3"
+            app:cardBackgroundColor="@color/card_background"
+            app:cardCornerRadius="@dimen/corner_radius">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/bottom_panel_margin_horizontal"
+                android:scaleType="fitCenter"
+                android:src="@drawable/png_4" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/bottom_panel_card_margin"
+            android:layout_weight="0.3"
+            app:cardBackgroundColor="@color/card_background"
+            app:cardCornerRadius="@dimen/corner_radius">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/bottom_panel_margin_horizontal"
+                android:scaleType="fitCenter"
+                android:src="@drawable/png_5" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/bottom_panel_card_margin"
+            android:layout_weight="0.3"
+            app:cardBackgroundColor="@color/card_background"
+            app:cardCornerRadius="@dimen/corner_radius">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/bottom_panel_margin_horizontal"
+                android:scaleType="fitCenter"
+                android:src="@drawable/png_6" />
+
+        </com.google.android.material.card.MaterialCardView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.3"
+        android:orientation="horizontal"
+        android:weightSum="0.9">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/bottom_panel_card_margin"
+            android:layout_weight="0.3"
+            app:cardBackgroundColor="@color/card_background"
+            app:cardCornerRadius="@dimen/corner_radius" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/bottom_panel_card_margin"
+            android:layout_weight="0.3"
+            app:cardBackgroundColor="@color/card_background"
+            app:cardCornerRadius="@dimen/corner_radius">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/bottom_panel_margin_horizontal"
+                android:scaleType="fitCenter"
+                android:src="@drawable/png_7" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/bottom_panel_card_margin"
+            android:layout_weight="0.3"
+            app:cardBackgroundColor="@color/card_background"
+            app:cardCornerRadius="@dimen/corner_radius" />
+
+    </LinearLayout>
+</LinearLayout>
