@@ -1,6 +1,8 @@
 package com.agnitt.puzzle
 
 import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.Canvas
 import android.graphics.drawable.Drawable
 import android.view.View
@@ -10,22 +12,26 @@ import androidx.cardview.widget.CardView
 
 class PiecesOfTile(context: Context) : GridView(context) {
     init {
-        pieces = mutableListOf<Drawable>().apply {
-            for (i in 1..7) pieces.add(
-                Drawable.createFromStream(context.assets.open("$i.png"), null)
-            )
+        pieces = mutableListOf()
+        cropPieces = mutableListOf()
+        context.doWithAssetsList {
+            val stream = context.assets.open(it)
+            pieces.add(Drawable.createFromStream(stream, null))
+            cropPieces.add(BitmapFactory.decodeStream(stream).crop())
         }
-//        var size = pieces.size
     }
 
     internal companion object {
         lateinit var pieces: MutableList<Drawable>
+        lateinit var cropPieces: MutableList<Bitmap>
     }
 }
+
 
 class Piece(context: Context, val img: Drawable) : CardView(context) {
 
     init {
+        id = View.generateViewId()
         radius = resources.getDimension(R.dimen.corner_radius)
         setCardBackgroundColor(resources.getColor(R.color.card_background))
         addView(ImageView(context).apply { setImageDrawable(img) })
