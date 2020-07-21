@@ -4,7 +4,7 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Color
 
-fun Context.doWithAssetsList(action: (String) -> Unit) = assets.list("")?.forEach(action)
+fun Context.doWithAssetsList(action: (String) -> Unit) = assets.list("")?.filter { it.contains(".png") }?.forEach(action)
 
 fun Bitmap.crop(): Bitmap {
     var y1 = 0
