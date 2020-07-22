@@ -13,6 +13,7 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.core.graphics.createBitmap
 import com.agnitt.puzzle.PiecesOfTile.Companion.pieces
+import com.agnitt.puzzle.Tile.Companion.tile
 import com.google.android.material.card.MaterialCardView
 
 
@@ -50,99 +51,4 @@ class PiecesOfTile @JvmOverloads constructor(
         lateinit var pieces: MutableList<Bitmap>
         lateinit var cardPieces: MutableList<Piece>
     }
-}
-
-class GridAdapter(private val context: Context, private val pieces: List<Piece>) : BaseAdapter() {
-    override fun getView(position: Int, convertView: View?, parent: ViewGroup?) =
-        (convertView ?: pieces[position])
-
-    override fun getItem(position: Int): Any = pieces[position]
-    override fun getItemId(position: Int): Long = pieces[position].id.toLong()
-    override fun getCount(): Int = pieces.count()
-}
-
-class Piece @JvmOverloads constructor(
-    context: Context,
-    val img: Bitmap? = null,
-    val position: Int = 0,
-    attrs: AttributeSet? = null,
-    defStyleAttr: Int = 0
-) : MaterialCardView(context, attrs, defStyleAttr) {
-
-    init {
-        id = View.generateViewId()
-        tag = false
-        layoutParams =
-            LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT, Gravity.CENTER)
-                .apply { setMargins(10, 10, 10, 10) }
-        elevation = 10f
-        radius = resources.getDimension(R.dimen.corner_radius)
-        setCardBackgroundColor(resources.getColor(R.color.card_background))
-        setOnClickListener { view -> onClick(view) }
-        setImg()
-    }
-
-    fun setImg() = this.addView(ImageView(context).apply {
-        tag = "main"
-        setImageBitmap(img)
-        setCardBackgroundColor(resources.getColor(R.color.card_background))
-        layoutParams =
-            LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT, Gravity.CENTER)
-                .apply { setPadding(10, 10, 10, 10) }
-    })
-
-    fun setIcon() = this.addView(ImageView(context).apply {
-        tag = "icon"
-        setImageResource(R.drawable.ic_baseline_check_24)
-        setBackgroundColor(resources.getColor(R.color.black_semitransparent))
-        val side = this@Piece.measuredWidth
-        layoutParams = LayoutParams(side, side, Gravity.CENTER)
-            .apply { setPadding(side / 3, side / 3, side / 3, side / 3) }
-    })
-
-    fun onClick(view: View) = view.apply {
-        val checkedIcon = this.findViewWithTag<ImageView>("icon")
-        tag = when (tag.toString().toBoolean()) {
-            false -> {
-                if (checkedIcon != null) checkedIcon.visibility = View.VISIBLE else setIcon()
-                true
-            }
-            true -> {
-                if (checkedIcon != null) checkedIcon.visibility = View.INVISIBLE
-                false
-            }
-        }
-    }
-
-    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec)
-        val width = View.getDefaultSize(suggestedMinimumWidth, widthMeasureSpec)
-        setMeasuredDimension(width, width)
-    }
-
-    override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
-        super.onSizeChanged(w, w, oldw, oldh)
-    }
-}
-
-class Tile @JvmOverloads constructor(
-    context: Context,
-    attrs: AttributeSet? = null,
-    defStyleAttr: Int = 0
-) : View(context, attrs, defStyleAttr) {
-
-    var picture: Bitmap = lazy { createBitmap(pieces[0].width, pieces[0].height) }.value
-    val paint: Paint = Paint()
-    var checkedPieces: MutableList<Bitmap> = mutableListOf()
-
-    override fun onDraw(canvas: Canvas?) {
-        super.onDraw(canvas)
-        checkedPieces.forEach {
-            canvas?.drawBitmap(it, pieces[0].width.toFloat(), pieces[0].height.toFloat(), paint)
-        }
-    }
-
-    fun insertPiece(index: Int) = checkedPieces.add(pieces[index])
-    fun insertPieces(indexes: Int) = checkedPieces.add(pieces[index])
-
 }

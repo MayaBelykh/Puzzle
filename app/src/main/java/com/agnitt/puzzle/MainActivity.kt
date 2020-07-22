@@ -26,12 +26,6 @@ class MainActivity : AppCompatActivity() {
         return true
     }
 
-//    fun Bitmap.insertPieceIntoPicture(){
-//
-//        findViewById<ImageView>(R.id.picture)
-//    }
-//
-
 //    override fun onOptionsItemSelected(item: MenuItem): Boolean {
 //        when (item.itemId) {
 //            R.id.menu_item_send -> sendPicture()
