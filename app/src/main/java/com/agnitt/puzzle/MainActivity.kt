@@ -1,15 +1,18 @@
 package com.agnitt.puzzle
 
+import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.ImageView
 import android.widget.ListPopupWindow
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.view.menu.MenuBuilder
 import androidx.appcompat.widget.Toolbar
 import androidx.core.graphics.createBitmap
+import com.agnitt.puzzle.Tile.Companion.tile
 import com.google.android.material.appbar.MaterialToolbar
 
 
@@ -26,28 +29,36 @@ class MainActivity : AppCompatActivity() {
         return true
     }
 
-//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//        when (item.itemId) {
-//            R.id.menu_item_send -> sendPicture()
-//            R.id.menu_item_clear -> uncheckedPieces()
-//            R.id.menu_item_random -> checkedRandomPieces()
-//        }
-//        return super.onOptionsItemSelected(item)
-//    }
-//
-//    fun sendPicture() = if (dbh.countVideos() != 0) this.startActivity(Intent.createChooser(Intent().apply {
-//        action = Intent.ACTION_SEND
-//        putExtra(Intent.EXTRA_TEXT, dbh.getAllVideos().toStringForShare())
-//        type = "text/plain"
-//    }, null))
-//    else toast(this, "Ваша коллекция видео пуста Т_Т")
-//    fun uncheckedPieces() {}
-//    fun checkedRandomPieces() {}
-}
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.menu_item_send -> sendPicture()
+            R.id.menu_item_clear -> uncheckPieces()
+            R.id.menu_item_random -> checkedRandomPieces()
+        }
+        return super.onOptionsItemSelected(item)
+    }
 
-//fun Context.clearBase() =
-//    if (dbh.countVideos() == 0) toast(this, "Видеотека пуста")
-//    else {
-//        dbh.deleteAllVideos()
-//        toast(this, "Видеотека очищена")
-//    }
+    fun sendPicture() = if (tile.checkedPieces.isNotEmpty())
+        this@MainActivity.startActivity(Intent.createChooser(Intent().apply {
+            action = Intent.ACTION_SEND
+            putExtra(Intent.
+
+
+                ?????????????
+
+
+                , tile.bitmap)
+            type = "text/plain"
+        }, null))
+    else Toast(this@MainActivity).apply { setText("Кажется, делиться пока нечем (－.－)...zzz") }
+        .show()
+
+
+    fun uncheckPieces() = findViewById<PiecesOfTile>(R.id.piecesOfTile).childrens
+        .forEach { it.uncheck() }
+
+    fun checkedRandomPieces() = findViewById<PiecesOfTile>(R.id.piecesOfTile).childrens
+        .apply { forEach { it.uncheck() } }
+        .getRandomPieces()
+        .forEach { it.check() }
+}

@@ -23,6 +23,9 @@ class PiecesOfTile @JvmOverloads constructor(
     defStyleAttr: Int = 0,
     defStyleRes: Int = 0
 ) : GridView(context, attrs, defStyleAttr, defStyleRes) {
+
+    val childrens = mutableListOf<Piece>()
+
     init {
         layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
             .apply { setPadding(30, 30, 30, 0) }
@@ -42,7 +45,9 @@ class PiecesOfTile @JvmOverloads constructor(
             val stream = context.assets.open(imgFileName)
             pieces.add(BitmapFactory.decodeStream(stream))
             stream.close()
-            cardPieces.add(Piece(context, pieces.last().crop(), pieces.lastIndex))
+            val piece = Piece(context, pieces.last().crop(), pieces.lastIndex)
+            cardPieces.add(piece)
+            childrens.add(piece)
         }
         adapter = GridAdapter(context, cardPieces)
     }

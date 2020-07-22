@@ -15,6 +15,17 @@ class Tile @JvmOverloads constructor(
 
     val paint: Paint = Paint()
     var checkedPieces: MutableList<Bitmap> = mutableListOf()
+    val bitmap: Bitmap?
+        get() = if (PiecesOfTile.pieces.isNotEmpty() && checkedPieces.isNotEmpty()) {
+            val pieceForMeasure = PiecesOfTile.pieces[0]
+            val btmp = Bitmap.createBitmap(
+                pieceForMeasure.width,
+                pieceForMeasure.height,
+                Bitmap.Config.ARGB_8888
+            )
+            Canvas(btmp).putPieces()
+            btmp
+        } else null
 
     init {
         tile = this
@@ -22,17 +33,25 @@ class Tile @JvmOverloads constructor(
 
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
-        val left = if (PiecesOfTile.pieces.isNotEmpty()) this.measuredWidth / 2 - PiecesOfTile.pieces[0].width / 2 else 0
-        val top = if (PiecesOfTile.pieces.isNotEmpty()) this.measuredHeight / 2 - PiecesOfTile.pieces[0].height / 2 else 0
-        checkedPieces.forEach { canvas?.drawBitmap(it, left.toFloat(), top.toFloat(), paint) }
+        canvas?.putPieces()
         invalidate()
     }
 
     fun insertPiece(index: Int) = checkedPieces.add(PiecesOfTile.pieces[index])
-    fun insertPieces(indexes: List<Int>) = indexes.forEach { checkedPieces.add(PiecesOfTile.pieces[it]) }
+    fun insertPieces(indexes: List<Int>) =
+        indexes.forEach { checkedPieces.add(PiecesOfTile.pieces[it]) }
 
     fun deletePiece(index: Int) = checkedPieces.remove(PiecesOfTile.pieces[index])
-    fun deletePieces(indexes: List<Int>) = indexes.forEach { checkedPieces.remove(PiecesOfTile.pieces[it]) }
+    fun deletePieces(indexes: List<Int>) =
+        indexes.forEach { checkedPieces.remove(PiecesOfTile.pieces[it]) }
+
+    fun Canvas.putPieces() {
+        val left = if (PiecesOfTile.pieces.isNotEmpty())
+            this@Tile.measuredWidth / 2 - PiecesOfTile.pieces[0].width / 2 else 0
+        val top = if (PiecesOfTile.pieces.isNotEmpty())
+            this@Tile.measuredHeight / 2 - PiecesOfTile.pieces[0].height / 2 else 0
+        checkedPieces.forEach { this.drawBitmap(it, left.toFloat(), top.toFloat(), paint) }
+    }
 
     internal companion object {
         lateinit var tile: Tile

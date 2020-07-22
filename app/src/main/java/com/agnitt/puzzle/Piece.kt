@@ -48,6 +48,9 @@ class Piece @JvmOverloads constructor(
             .apply { setPadding(side / 3, side / 3, side / 3, side / 3) }
     })
 
+    fun uncheck() = if (tag.toString().toBoolean()) onClick(this) else null
+    fun check() = if (!tag.toString().toBoolean()) onClick(this) else null
+
     fun onClick(view: View) = view.apply {
         val checkedIcon = this.findViewWithTag<ImageView>("icon")
         tag = when (tag.toString().toBoolean()) {
