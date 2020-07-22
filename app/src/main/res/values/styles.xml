@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <style name="Theme.Puzzle.ActionBar" parent="Theme.Puzzle">
         <item name="colorControlNormal">@android:color/white</item>
     </style>
+    <style name="OverflowMenu" parent="Widget.AppCompat.PopupMenu.Overflow">
+        <item name="overlapAnchor">false</item>
+        <item name="android:colorActivatedHighlight">@android:color/white</item>
+        <item name="popupMenuBackground">@color/white_semitransparent</item>
+        <item name="android:textColor">@android:color/white</item>
 
+
+    </style>
 </resources>

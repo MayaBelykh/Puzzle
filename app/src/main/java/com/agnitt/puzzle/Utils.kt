@@ -3,8 +3,10 @@ package com.agnitt.puzzle
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Color
+import android.util.Log
 
-fun Context.doWithAssetsList(action: (String) -> Unit) = assets.list("")?.filter { it.contains(".png") }?.forEach(action)
+fun Context.doWithAssetsList(action: (String) -> Unit) =
+    assets.list("")?.filter { it.contains(".png") }?.forEach(action)
 
 fun Bitmap.crop(): Bitmap {
     var y1 = 0
@@ -25,13 +27,26 @@ fun Bitmap.crop(): Bitmap {
     return Bitmap.createBitmap(this, x1, y1, x2 - x1, y2 - y1)
 }
 
-private fun Bitmap.getImgCoordinates(value: Int, num: Int, stride: Int, x: Int?, y: Int?, w: Int, h: Int) =
-    IntArray(2).apply {
-        for (i in 0 until value)
-            if (isNotTransparent(num, stride, x ?: i, y ?: i, w, h)) this[0] = i
-        for (i in value - 1 downTo this[0])
-            if (isNotTransparent(num, stride, x ?: i, y ?: i, w, h)) this[1] = i
-    }
+private fun Bitmap.getImgCoordinates(
+    value: Int,
+    num: Int,
+    stride: Int,
+    x: Int?,
+    y: Int?,
+    w: Int,
+    h: Int
+) = IntArray(2).apply {
+    for (i in 0 until value)
+        if (isNotTransparent(num, stride, x ?: i, y ?: i, w, h)) {
+            this[0] = i
+            break
+        }
+    for (i in value - 1 downTo this[0])
+        if (isNotTransparent(num, stride, x ?: i, y ?: i, w, h)) {
+            this[1] = i
+            break
+        }
+}
 
 private fun Bitmap.isNotTransparent(num: Int, stride: Int, x: Int, y: Int, w: Int, h: Int) =
     IntArray(num).let { pixels ->

@@ -2,15 +2,18 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:title="TODO"
+        android:id="@+id/menu_item_send"
+        android:title="@string/text_send"
         app:showAsAction="never" />
 
     <item
-        android:title="TODO"
+        android:id="@+id/menu_item_clear"
+        android:title="@string/text_clear"
         app:showAsAction="never" />
 
     <item
-        android:title="TODO"
+        android:id="@+id/menu_item_random"
+        android:title="@string/text_random"
         app:showAsAction="never" />
 
 </menu>

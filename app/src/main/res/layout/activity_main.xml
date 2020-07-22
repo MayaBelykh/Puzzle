@@ -12,13 +12,26 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/black_semitransparent"
+        android:layoutMode="opticalBounds"
         android:minHeight="?attr/actionBarSize"
         android:theme="@style/Theme.Puzzle.ActionBar"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:popupTheme="@style/OverflowMenu"
         app:titleTextColor="@android:color/transparent" />
 
+    <com.agnitt.puzzle.Tile
+        android:id="@+id/tile"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="@dimen/picture_height_percent"
+        app:layout_constraintBottom_toTopOf="@+id/piecesOfTile"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        tools:ignore="ContentDescription" />
+
     <com.agnitt.puzzle.PiecesOfTile
+        android:id="@+id/piecesOfTile"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginHorizontal="@dimen/bottom_panel_margin_horizontal"
@@ -26,16 +39,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="@dimen/bottom_panel_height_percent"
-        app:layout_constraintStart_toStartOf="parent"/>
-<!--    <include-->
-<!--        layout="@layout/table"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="0dp"-->
-<!--        android:layout_marginHorizontal="@dimen/bottom_panel_margin_horizontal"-->
-<!--        android:layout_marginTop="@dimen/bottom_panel_margin_top"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHeight_percent="@dimen/bottom_panel_height_percent"-->
-<!--        app:layout_constraintStart_toStartOf="parent" />-->
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

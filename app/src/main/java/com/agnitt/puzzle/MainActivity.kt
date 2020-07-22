@@ -1,21 +1,24 @@
 package com.agnitt.puzzle
 
-import android.graphics.drawable.Drawable
-import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
+import android.graphics.Bitmap
 import android.os.Bundle
 import android.view.Menu
-import android.widget.ImageButton
+import android.view.MenuItem
 import android.widget.ImageView
-import android.widget.TableLayout
-import android.widget.TableRow
-import androidx.cardview.widget.CardView
+import android.widget.ListPopupWindow
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.view.menu.MenuBuilder
+import androidx.appcompat.widget.Toolbar
+import androidx.core.graphics.createBitmap
+import com.google.android.material.appbar.MaterialToolbar
+
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        setSupportActionBar(findViewById(R.id.toolbar))
+        val toolbar: MaterialToolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -23,29 +26,34 @@ class MainActivity : AppCompatActivity() {
         return true
     }
 
-    fun assemblePuzzle() {
-
-    }
-
-//    fun setAssets() {
-//        findViewById<TableLayout>(R.id.tableLayout).apply {
-//            val list = mutableListOf<Drawable>()
-//            for (i in 1..7) list.add(Drawable.createFromStream(context.assets.open("$j.png"), null))
-//            var size = list.size
-//            for (i in 0 .. size / 3){
-//                val row = TableRow(context)
-//                for (j in 0 until 3) {
-//                    val card = CardView(context).apply {
-//                        radius = resources.getDimension(R.dimen.corner_radius)
-//                        setCardBackgroundColor(resources.getColor(R.color.purple_700))
-//                        val imageView= ImageView(context).apply {
-//                            setImageDrawable(list[i])
-//                        }
-//                        addView()
-//                    }
-//                    row.addView(card)
-//                }
-//            }
-//        }
+//    fun Bitmap.insertPieceIntoPicture(){
+//
+//        findViewById<ImageView>(R.id.picture)
 //    }
+//
+
+//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+//        when (item.itemId) {
+//            R.id.menu_item_send -> sendPicture()
+//            R.id.menu_item_clear -> uncheckedPieces()
+//            R.id.menu_item_random -> checkedRandomPieces()
+//        }
+//        return super.onOptionsItemSelected(item)
+//    }
+//
+//    fun sendPicture() = if (dbh.countVideos() != 0) this.startActivity(Intent.createChooser(Intent().apply {
+//        action = Intent.ACTION_SEND
+//        putExtra(Intent.EXTRA_TEXT, dbh.getAllVideos().toStringForShare())
+//        type = "text/plain"
+//    }, null))
+//    else toast(this, "Ваша коллекция видео пуста Т_Т")
+//    fun uncheckedPieces() {}
+//    fun checkedRandomPieces() {}
 }
+
+//fun Context.clearBase() =
+//    if (dbh.countVideos() == 0) toast(this, "Видеотека пуста")
+//    else {
+//        dbh.deleteAllVideos()
+//        toast(this, "Видеотека очищена")
+//    }

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <item name="bottom_panel_height_percent" type="dimen" format="float">0.5</item>
+    <item name="bottom_panel_height_percent" type="dimen" format="float">0.425</item>
+    <item name="picture_height_percent" type="dimen" format="float">0.425</item>
     <dimen name="corner_radius">10dp</dimen>
     <dimen name="bottom_panel_margin_horizontal">2dp</dimen>
     <dimen name="bottom_panel_margin_top">10dp</dimen>

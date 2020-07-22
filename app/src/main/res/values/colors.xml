@@ -8,6 +8,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="black_semitransparent">#77000000</color>
+    <color name="white_semitransparent">#44FFFFFF</color>
     <color name="bottom_panel_background">#C6E0FE</color>
     <color name="main_background">#120873</color>
     <color name="card_background">#FFFFFF</color>
