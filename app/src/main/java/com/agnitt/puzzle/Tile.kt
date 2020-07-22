@@ -17,7 +17,7 @@ class Tile @JvmOverloads constructor(
     var checkedPieces: MutableList<Bitmap> = mutableListOf()
     val bitmap: Bitmap?
         get() = if (PiecesOfTile.pieces.isNotEmpty() && checkedPieces.isNotEmpty()) {
-            val pieceForMeasure = PiecesOfTile.pieces[0]
+            val pieceForMeasure = PiecesOfTile.pieces[1]
             val btmp = Bitmap.createBitmap(
                 pieceForMeasure.width,
                 pieceForMeasure.height,
@@ -47,9 +47,9 @@ class Tile @JvmOverloads constructor(
 
     fun Canvas.putPieces() {
         val left = if (PiecesOfTile.pieces.isNotEmpty())
-            this@Tile.measuredWidth / 2 - PiecesOfTile.pieces[0].width / 2 else 0
+            this@Tile.measuredWidth / 2 - PiecesOfTile.pieces[1].width / 2 else 0
         val top = if (PiecesOfTile.pieces.isNotEmpty())
-            this@Tile.measuredHeight / 2 - PiecesOfTile.pieces[0].height / 2 else 0
+            this@Tile.measuredHeight / 2 - PiecesOfTile.pieces[1].height / 2 else 0
         checkedPieces.forEach { this.drawBitmap(it, left.toFloat(), top.toFloat(), paint) }
     }
 

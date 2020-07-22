@@ -1,6 +1,7 @@
 package com.agnitt.puzzle
 
 import android.content.Context
+import android.content.res.Resources
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Canvas
@@ -43,9 +44,14 @@ class PiecesOfTile @JvmOverloads constructor(
 
         context.doWithAssetsList { imgFileName ->
             val stream = context.assets.open(imgFileName)
-            pieces.add(BitmapFactory.decodeStream(stream))
+            var btmp = BitmapFactory.decodeStream(stream)
+            pieces.add(btmp)
             stream.close()
-            val piece = Piece(context, pieces.last().crop(), pieces.lastIndex)
+
+            val coeff = btmp.width / (Resources.getSystem().displayMetrics.widthPixels / 3)
+            if (coeff > 1) btmp =
+                Bitmap.createScaledBitmap(btmp, btmp.width * coeff, btmp.height * coeff, false)
+            val piece = Piece(context, btmp.crop(), pieces.lastIndex)
             cardPieces.add(piece)
             childrens.add(piece)
         }

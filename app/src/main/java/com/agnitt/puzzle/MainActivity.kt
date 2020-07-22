@@ -8,12 +8,14 @@ import android.view.MenuItem
 import android.widget.ImageView
 import android.widget.ListPopupWindow
 import android.widget.Toast
+import android.widget.Toast.makeText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.view.menu.MenuBuilder
 import androidx.appcompat.widget.Toolbar
 import androidx.core.graphics.createBitmap
 import com.agnitt.puzzle.Tile.Companion.tile
 import com.google.android.material.appbar.MaterialToolbar
+import java.time.Duration
 
 
 class MainActivity : AppCompatActivity() {
@@ -39,19 +41,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun sendPicture() = if (tile.checkedPieces.isNotEmpty())
-        this@MainActivity.startActivity(Intent.createChooser(Intent().apply {
-            action = Intent.ACTION_SEND
-            putExtra(Intent.
-
-
-                ?????????????
-
-
-                , tile.bitmap)
-            type = "text/plain"
-        }, null))
-    else Toast(this@MainActivity).apply { setText("Кажется, делиться пока нечем (－.－)...zzz") }
-        .show()
+//        this@MainActivity.startActivity(Intent.createChooser(Intent().apply {
+//            action = Intent.ACTION_SEND
+//            putExtra(Intent.
+//                , tile.bitmap)
+//            type = "text/plain"
+//        }, null))
+        null
+    else Toast.makeText(this,"Кажется, делиться пока нечем (－.－)...zzz", Toast.LENGTH_SHORT).show()
 
 
     fun uncheckPieces() = findViewById<PiecesOfTile>(R.id.piecesOfTile).childrens

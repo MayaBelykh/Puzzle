@@ -29,13 +29,7 @@ fun Bitmap.crop(): Bitmap {
 }
 
 private fun Bitmap.getImgCoordinates(
-    value: Int,
-    num: Int,
-    stride: Int,
-    x: Int?,
-    y: Int?,
-    w: Int,
-    h: Int
+    value: Int, num: Int, stride: Int, x: Int?, y: Int?, w: Int, h: Int
 ) = IntArray(2).apply {
     for (i in 0 until value)
         if (isNotTransparent(num, stride, x ?: i, y ?: i, w, h)) {
