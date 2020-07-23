@@ -35,7 +35,6 @@
         android:id="@+id/piecesOfTile"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:animateLayoutChanges="true"
         android:layout_marginHorizontal="@dimen/bottom_panel_margin_horizontal"
         android:layout_marginTop="@dimen/bottom_panel_margin_top"
         app:layout_constraintBottom_toBottomOf="parent"

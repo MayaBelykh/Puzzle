@@ -29,7 +29,7 @@ class Piece @JvmOverloads constructor(
 
         setCardBackgroundColor(resources.getColor(R.color.card_background))
         setOnClickListener { onClick(this) }
-//        setOnLongClickListener { onClick(this) is View }
+        setOnLongClickListener { onClick(this) }
         setImg()
     }
 
@@ -61,7 +61,7 @@ class Piece @JvmOverloads constructor(
             .apply { setPadding(side / 3, side / 3, side / 3, side / 3) }
     })
 
-    private fun onClick(view: View) = view.apply {
+    private fun onClick(view: View): Boolean {
         val checkedIcon = findViewWithTag<ImageView>("icon")
         tag = when (tag.toString().toBoolean()) {
             false -> {
@@ -75,6 +75,7 @@ class Piece @JvmOverloads constructor(
                 false
             }
         }
+        return true
     }
 
     fun uncheck() = if (tag.toString().toBoolean()) onClick(this) else null
