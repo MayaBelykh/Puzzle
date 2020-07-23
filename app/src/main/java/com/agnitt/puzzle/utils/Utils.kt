@@ -1,15 +1,15 @@
-package com.agnitt.puzzle
+package com.agnitt.puzzle.utils
 
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Color
-import android.util.Log
+import com.agnitt.puzzle.views.Piece
 import kotlin.random.Random
 
-fun Context.doWithAssetsList(action: (String) -> Unit) =
+internal fun Context.doWithAssetsList(action: (String) -> Unit) =
     assets.list("")?.filter { it.contains(".png") }?.forEach(action)
 
-fun Bitmap.crop(): Bitmap {
+internal fun Bitmap.crop(): Bitmap {
     var y1 = 0
     var y2 = 0
     var x1 = 0
@@ -49,6 +49,6 @@ private fun Bitmap.isNotTransparent(num: Int, stride: Int, x: Int, y: Int, w: In
         !pixels.contentEquals(IntArray(num) { Color.TRANSPARENT })
     }
 
-fun MutableList<Piece>.getRandomPieces() = mutableListOf<Piece>().also { resList ->
+internal fun MutableList<Piece>.getRandomPieces() = mutableListOf<Piece>().also { resList ->
     for (i in 0..Random.nextInt(1, size)) resList.add(this[Random.nextInt(0, size)])
 }.distinct()

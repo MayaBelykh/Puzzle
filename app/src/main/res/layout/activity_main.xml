@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/main_background"
-    tools:context=".MainActivity">
+    tools:context=".activities.MainActivity">
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbar"
@@ -19,10 +19,11 @@
         app:popupTheme="@style/OverflowMenu"
         app:titleTextColor="@android:color/transparent" />
 
-    <com.agnitt.puzzle.Tile
+    <com.agnitt.puzzle.views.Tile
         android:id="@+id/tile"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:animateLayoutChanges="true"
         app:layout_constraintHeight_percent="@dimen/picture_height_percent"
         app:layout_constraintBottom_toTopOf="@+id/piecesOfTile"
         app:layout_constraintEnd_toEndOf="parent"
@@ -30,10 +31,11 @@
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
         tools:ignore="ContentDescription" />
 
-    <com.agnitt.puzzle.PiecesOfTile
+    <com.agnitt.puzzle.views.PiecesOfTile
         android:id="@+id/piecesOfTile"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:animateLayoutChanges="true"
         android:layout_marginHorizontal="@dimen/bottom_panel_margin_horizontal"
         android:layout_marginTop="@dimen/bottom_panel_margin_top"
         app:layout_constraintBottom_toBottomOf="parent"

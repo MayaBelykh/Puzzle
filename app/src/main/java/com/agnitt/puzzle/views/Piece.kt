@@ -1,4 +1,4 @@
-package com.agnitt.puzzle
+package com.agnitt.puzzle.views
 
 import android.content.Context
 import android.graphics.Bitmap
@@ -6,13 +6,13 @@ import android.util.AttributeSet
 import android.view.Gravity
 import android.view.View
 import android.widget.ImageView
+import com.agnitt.puzzle.R
 import com.google.android.material.card.MaterialCardView
-
 
 class Piece @JvmOverloads constructor(
     context: Context,
-    val img: Bitmap? = null,
-    val position: Int = 0,
+    private val img: Bitmap? = null,
+    private val position: Int = 0,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : MaterialCardView(context, attrs, defStyleAttr) {
@@ -25,12 +25,25 @@ class Piece @JvmOverloads constructor(
                 .apply { setMargins(10, 10, 10, 10) }
         elevation = 10f
         radius = resources.getDimension(R.dimen.corner_radius)
+
+
         setCardBackgroundColor(resources.getColor(R.color.card_background))
-        setOnClickListener { view -> onClick(view) }
+        setOnClickListener { onClick(this) }
+//        setOnLongClickListener { onClick(this) is View }
         setImg()
     }
 
-    fun setImg() = this.addView(ImageView(context).apply {
+    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec)
+        val width = View.getDefaultSize(suggestedMinimumWidth, widthMeasureSpec)
+        setMeasuredDimension(width, width)
+    }
+
+    override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
+        super.onSizeChanged(w, w, oldw, oldh)
+    }
+
+    private fun setImg() = this.addView(ImageView(context).apply {
         tag = "main"
         setImageBitmap(img)
         setCardBackgroundColor(resources.getColor(R.color.card_background))
@@ -39,7 +52,7 @@ class Piece @JvmOverloads constructor(
                 .apply { setPadding(10, 10, 10, 10) }
     })
 
-    fun setIcon() = this.addView(ImageView(context).apply {
+    private fun setIcon() = this.addView(ImageView(context).apply {
         tag = "icon"
         setImageResource(R.drawable.ic_baseline_check_24)
         setBackgroundColor(resources.getColor(R.color.black_semitransparent))
@@ -48,11 +61,8 @@ class Piece @JvmOverloads constructor(
             .apply { setPadding(side / 3, side / 3, side / 3, side / 3) }
     })
 
-    fun uncheck() = if (tag.toString().toBoolean()) onClick(this) else null
-    fun check() = if (!tag.toString().toBoolean()) onClick(this) else null
-
-    fun onClick(view: View) = view.apply {
-        val checkedIcon = this.findViewWithTag<ImageView>("icon")
+    private fun onClick(view: View) = view.apply {
+        val checkedIcon = findViewWithTag<ImageView>("icon")
         tag = when (tag.toString().toBoolean()) {
             false -> {
                 if (checkedIcon != null) checkedIcon.visibility = View.VISIBLE else setIcon()
@@ -67,13 +77,6 @@ class Piece @JvmOverloads constructor(
         }
     }
 
-    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec)
-        val width = View.getDefaultSize(suggestedMinimumWidth, widthMeasureSpec)
-        setMeasuredDimension(width, width)
-    }
-
-    override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
-        super.onSizeChanged(w, w, oldw, oldh)
-    }
+    fun uncheck() = if (tag.toString().toBoolean()) onClick(this) else null
+    fun check() = if (!tag.toString().toBoolean()) onClick(this) else null
 }

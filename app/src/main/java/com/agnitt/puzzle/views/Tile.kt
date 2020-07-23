@@ -1,4 +1,4 @@
-package com.agnitt.puzzle
+package com.agnitt.puzzle.views
 
 import android.content.Context
 import android.graphics.Bitmap
@@ -6,6 +6,7 @@ import android.graphics.Canvas
 import android.graphics.Paint
 import android.util.AttributeSet
 import android.view.View
+import com.agnitt.puzzle.utils.crop
 
 class Tile @JvmOverloads constructor(
     context: Context,
@@ -13,18 +14,17 @@ class Tile @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : View(context, attrs, defStyleAttr) {
 
-    val paint: Paint = Paint()
-    var checkedPieces: MutableList<Bitmap> = mutableListOf()
+    private val paint: Paint = Paint()
+    private var checkedPieces: MutableList<Bitmap> = mutableListOf()
     val bitmap: Bitmap?
         get() = if (PiecesOfTile.pieces.isNotEmpty() && checkedPieces.isNotEmpty()) {
-            val pieceForMeasure = PiecesOfTile.pieces[1]
             val btmp = Bitmap.createBitmap(
-                pieceForMeasure.width,
-                pieceForMeasure.height,
-                Bitmap.Config.ARGB_8888
-            )
+                    this.measuredWidth,
+                    this.measuredHeight,
+                    Bitmap.Config.ARGB_8888
+                )
             Canvas(btmp).putPieces()
-            btmp
+            btmp.crop()
         } else null
 
     init {
@@ -45,7 +45,7 @@ class Tile @JvmOverloads constructor(
     fun deletePieces(indexes: List<Int>) =
         indexes.forEach { checkedPieces.remove(PiecesOfTile.pieces[it]) }
 
-    fun Canvas.putPieces() {
+    private fun Canvas.putPieces() {
         val left = if (PiecesOfTile.pieces.isNotEmpty())
             this@Tile.measuredWidth / 2 - PiecesOfTile.pieces[1].width / 2 else 0
         val top = if (PiecesOfTile.pieces.isNotEmpty())

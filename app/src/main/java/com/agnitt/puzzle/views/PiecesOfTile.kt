@@ -1,22 +1,15 @@
-package com.agnitt.puzzle
+package com.agnitt.puzzle.views
 
 import android.content.Context
 import android.content.res.Resources
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.graphics.Canvas
-import android.graphics.Paint
 import android.util.AttributeSet
-import android.util.Log
-import android.view.Gravity
-import android.view.View
-import android.view.ViewGroup
-import android.widget.*
-import androidx.core.graphics.createBitmap
-import com.agnitt.puzzle.PiecesOfTile.Companion.pieces
-import com.agnitt.puzzle.Tile.Companion.tile
-import com.google.android.material.card.MaterialCardView
-
+import android.widget.GridView
+import com.agnitt.puzzle.adapters.GridAdapter
+import com.agnitt.puzzle.R
+import com.agnitt.puzzle.utils.crop
+import com.agnitt.puzzle.utils.doWithAssetsList
 
 class PiecesOfTile @JvmOverloads constructor(
     context: Context,
@@ -25,9 +18,10 @@ class PiecesOfTile @JvmOverloads constructor(
     defStyleRes: Int = 0
 ) : GridView(context, attrs, defStyleAttr, defStyleRes) {
 
-    val childrens = mutableListOf<Piece>()
+    val children = mutableListOf<Piece>()
 
     init {
+        piecesOfTile = this
         layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
             .apply { setPadding(30, 30, 30, 0) }
         background = resources.getDrawable(R.drawable.bottom_panel)
@@ -51,14 +45,22 @@ class PiecesOfTile @JvmOverloads constructor(
             val coeff = btmp.width / (Resources.getSystem().displayMetrics.widthPixels / 3)
             if (coeff > 1) btmp =
                 Bitmap.createScaledBitmap(btmp, btmp.width * coeff, btmp.height * coeff, false)
-            val piece = Piece(context, btmp.crop(), pieces.lastIndex)
+            val piece = Piece(
+                context,
+                btmp.crop(),
+                pieces.lastIndex
+            )
             cardPieces.add(piece)
-            childrens.add(piece)
+            children.add(piece)
         }
-        adapter = GridAdapter(context, cardPieces)
+        adapter = GridAdapter(
+            context,
+            cardPieces
+        )
     }
 
     internal companion object {
+        lateinit var piecesOfTile: PiecesOfTile
         lateinit var pieces: MutableList<Bitmap>
         lateinit var cardPieces: MutableList<Piece>
     }
